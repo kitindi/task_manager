@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -46,6 +47,11 @@ def login_user(request):
                 auth.login(request, user)
 
                 return redirect('dashboard')
+            else:
+                messages.error(request, 'Please correct the following errors:')
+                context = {'form':form}
+
+                return render(request, 'users/login.html', context=context)
 
 
     context = {'form':form}
