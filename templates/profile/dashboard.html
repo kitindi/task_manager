@@ -1,0 +1,16 @@
+{% extends "users/base.html" %} {% block content %}
+
+<main class="max-w-6xl mx-auto">
+  <header class="flex justify-between py-4">
+    <div>{% if user.is_authenticated %} {{ user.username }} {% endif %}</div>
+    <div>
+      <a
+        href="{% url 'logout-user' %}"
+        class="bg-blue-600 text-white p-4 rounded-sm"
+        >Logout</a
+      >
+    </div>
+  </header>
+</main>
+
+{% endblock content %}
