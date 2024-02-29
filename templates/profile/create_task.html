@@ -51,7 +51,6 @@
             <span class="ml-3 font-medium">Dashboard</span>
           </a>
         </li>
-
         <li>
           <a
             href="#"
@@ -72,7 +71,7 @@
         </li>
         <li>
           <a
-            href="{% url 'create-task' %}"
+            href="#"
             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
             <svg
@@ -270,27 +269,29 @@
       <div
         class="col-span-8 sm:flex sm:justify-between sm:items-center pr-10 py-4"
       >
-        <div class="p-2 w-full">
-          {% for task in tasks %}
-          <a
-            href=""
-            class="text-gray-600 text-md grid grid-cols-12 w-full block mb-4 border-b-2 border-slate-150 py-3"
-          >
-            <div class="col-span-10 flex gap-4 items-center">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
-              />
-              <p>{{ task.title }}</p>
+        <div class="py-10 w-full">
+          <form action="" method="POST" class="max-w-lg mx-auto">
+            {% csrf_token %}
+            <div class="mb-8">
+              <h2 class="text-xl font-medium text-slate-600">
+                Create Today's Task
+              </h2>
             </div>
-            <div class="col-span-2">
-              <span class="text-xs font-medium">In progress</span>
+            <div class="">
+              {{ form.title.label_tag }}
+              <p class="py-2">{{ form.title }}</p>
             </div>
-          </a>
-
-          {% endfor %}
+            <div class="">
+              {{ form.content.label_tag }}
+              <p class="py-2">{{ form.content }}</p>
+            </div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Create task
+            </button>
+          </form>
         </div>
       </div>
       <div class="col-span-4 sm:pl-10">
