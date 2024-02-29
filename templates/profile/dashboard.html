@@ -258,9 +258,7 @@
         <div class="flex items-center justify-between gap-2">
           <h2 class="text-sm text-slate-600 font-medium">Important</h2>
         </div>
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-sm text-slate-600 font-medium">Links</h2>
-        </div>
+        <div class="flex items-center justify-between gap-2"></div>
       </div>
       <div class="col-span-4 sm:px-10">
         <h2 class="text-lg font-medium text-slate-600">Meeting Schedules</h2>
@@ -272,23 +270,46 @@
       >
         <div class="p-2 w-full">
           {% for task in tasks %}
-          <a
-            href=""
-            class="text-gray-600 text-md grid grid-cols-12 w-full block mb-4 border-b-2 border-slate-150 py-3"
+          <div
+            class="text-gray-600 text-md grid grid-cols-12 gap-2 w-full block mb-4 border-b-2 border-slate-150 py-3"
           >
-            <div class="col-span-10 flex gap-4 items-center">
+            <div class="col-span-8 flex gap-4 items-center">
               <input
                 type="checkbox"
                 name=""
                 id=""
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
               />
-              <p>{{ task.title }}</p>
+              <div class="flex flex-col pr-8">
+                <p class="text-blue-500 font-medium mb-3">{{ task.title }}</p>
+
+                <p class="text-sm font-semibold text-blue-700 mb-2">
+                  Task Details
+                </p>
+                <p class="text-sm">{{ task.content }}</p>
+              </div>
             </div>
-            <div class="col-span-2">
-              <span class="text-xs font-medium">In progress</span>
+            <div class="col-span-4 pt-9 flex items-center gap-3 pl-4">
+              <span class="text-xs font-medium">
+                <p class="mb-2 text-sm font-semibold text-blue-700">Timeline</p>
+                <p>
+                  <span>{{ task.start }}</span> - <span>{{ task.end }}</span>
+                </p>
+              </span>
+              <a href="{% url 'delete-task' task.id  %}"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  fill="#d31d1d"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    d="M216,50H174V40a22,22,0,0,0-22-22H104A22,22,0,0,0,82,40V50H40a6,6,0,0,0,0,12H50V208a14,14,0,0,0,14,14H192a14,14,0,0,0,14-14V62h10a6,6,0,0,0,0-12ZM94,40a10,10,0,0,1,10-10h48a10,10,0,0,1,10,10V50H94ZM194,208a2,2,0,0,1-2,2H64a2,2,0,0,1-2-2V62H194ZM110,104v64a6,6,0,0,1-12,0V104a6,6,0,0,1,12,0Zm48,0v64a6,6,0,0,1-12,0V104a6,6,0,0,1,12,0Z"
+                  ></path>
+                </svg>
+              </a>
             </div>
-          </a>
+          </div>
 
           {% endfor %}
         </div>
