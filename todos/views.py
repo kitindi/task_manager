@@ -21,8 +21,11 @@ def dashboard(request):
 @login_required(login_url="login-user")
 def create_task(request):
     form = TaskForm()
-    tasks = Task.objects.all()
+    current_user = request.user.id
     
+    tasks = Task.objects.all().filter(owner=current_user)
+    # tasks = Task.objects.all()
+   
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():

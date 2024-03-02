@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .forms import  SignupForm
-from .forms import LoginForm
+from .forms import LoginForm,ProfileForm,SignupForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -58,6 +58,15 @@ def login_user(request):
 
     return render(request, 'users/login.html', context=context)
 
+
+
+# Set up the user profile
+@login_required(login_url="login-user")
+def setup_user_profile(request):
+    
+    form = ProfileForm()
+    context = {'form': form}
+    return render(request,'users/profile.html', context)
 
 # logout the user
 
